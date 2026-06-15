@@ -49,6 +49,14 @@ Captured exploit traffic in Wireshark. Key observations:
 
 ![Wireshark Capture](screenshots/wireshark_analysis.png)
 
+### 4. Bonus Exploitation - Samba usermap_script (CVE-2007-2447)
+
+Used Metasploit module `exploit/multi/samba/usermap_script` targeting SMB port 139. Attack vector: command injection via the username field in the Samba service.
+
+Comparison:
+- vsftpd backdoor: targets FTP (port 21), triggers via malformed username `:)`, opens reverse shell on port 6200
+- Samba usermap_script: targets SMB (port 139), injects shell commands via username field, returns reverse shell to attacker LHOST
+
 ## Key Findings
 
 | Service | Port | Vulnerability | CVE |
@@ -67,4 +75,5 @@ Captured exploit traffic in Wireshark. Key observations:
 
 - `findings/nmap_full_scan.txt` - Full Nmap scan results
 - `findings/vsftpd_exploit.pcapng` - Wireshark capture of vsftpd exploitation
+- `findings/samba_exploit.pcapng` - Wireshark capture of Samba exploitation
 - `screenshots/` - Visual documentation of each step
